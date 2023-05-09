@@ -21,7 +21,27 @@
   </mat-drawer>
   <mat-drawer-content>
     <div class="chat-content">
-      <div class="chat-footer">Align to the bottom</div>
+      <div class="chat-history">
+        <ng-container *ngFor="let chat of chatMessages; index as i">
+          <div *ngIf="chat.type == 0" dir="ltr">
+            <mat-card style="width: fit-content">
+              <mat-card-content>{{ chat.message }}</mat-card-content>
+            </mat-card>
+          </div>
+          <div *ngIf="chat.type == 1" dir="rtl">
+            <mat-card style="width: fit-content">
+              <mat-card-content>{{ chat.message }}</mat-card-content>
+            </mat-card>
+          </div>
+          <br />
+        </ng-container>
+      </div>
+      <div class="chat-footer">
+        <mat-form-field class="example-full-width">
+          <mat-label>Leave a comment</mat-label>
+          <textarea matInput placeholder="Ex. It makes me feel..."></textarea>
+        </mat-form-field>
+      </div>
     </div>
   </mat-drawer-content>
 </mat-drawer-container>
