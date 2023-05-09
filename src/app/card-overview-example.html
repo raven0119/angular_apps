@@ -1,57 +1,31 @@
 <mat-toolbar color="primary">
+  <span>Chatbot</span>
+  <span class="example-spacer"></span>
   <button
     mat-icon-button
-    [matMenuTriggerFor]="menu"
     aria-label="Example icon-button with a menu"
+    (click)="drawer.toggle()"
   >
     <mat-icon>menu</mat-icon>
   </button>
-  <mat-menu #menu="matMenu">
-    <button mat-menu-item>
-      <mat-icon>dialpad</mat-icon>
-      <span>Redial</span>
-    </button>
-    <button mat-menu-item disabled>
-      <mat-icon>voicemail</mat-icon>
-      <span>Check voice mail</span>
-    </button>
-    <button mat-menu-item>
-      <mat-icon>notifications_off</mat-icon>
-      <span>Disable alerts</span>
-    </button>
-  </mat-menu>
-
-  <span>Chatbot</span>
-  <span class="example-spacer"></span>
-  <button type="button" mat-button (click)="drawer.toggle()">Toggle</button>
 </mat-toolbar>
 
-<div style="height: 80%">
-  <mat-drawer-container class="example-container">
-    <mat-drawer-content
-      ><ng-container *ngFor="let chat of chatMessages; index as i">
-        <div *ngIf="chat.type == 0" dir="rtl">
-          <mat-card style="width: fit-content">
-            <mat-card-content>{{ chat.message }}</mat-card-content>
-          </mat-card>
-        </div>
-        <div *ngIf="chat.type == 1" dir="ltr">
-          <mat-card style="width: fit-content">
-            <mat-card-content>{{ chat.message }}</mat-card-content>
-          </mat-card>
-        </div>
-        <br /> </ng-container
-    ></mat-drawer-content>
+
+  <mat-drawer-container class="main-content">
     <mat-drawer #drawer mode="side" opened position="end"
       ><p>Menu Options</p>
       <mat-list role="list">
         <mat-list-item role="listitem">Item 1</mat-list-item>
         <mat-list-item role="listitem">Item 2</mat-list-item>
         <mat-list-item role="listitem">Item 3</mat-list-item>
-      </mat-list></mat-drawer
-    >
+      </mat-list>
+    </mat-drawer>
+    <mat-drawer-content>
+      <div class="chat-content">
+        <div class="chat-footer">Align to the bottom</div>
+    </div>
+    </mat-drawer-content>
   </mat-drawer-container>
-</div>
 
 <!-- Copyright 2023 Google LLC. All Rights Reserved.
     Use of this source code is governed by an MIT-style license that
